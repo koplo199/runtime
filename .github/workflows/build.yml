@@ -11,7 +11,7 @@ jobs:
 
       - name: Fetching Build Tools
         working-directory: /home/runner/work/
-        run: git clone https://github.com/bottlesdevs/build-tools.git
+        run: git clone https://github.com/koplo199/build-tools
 
       - name: Make build scripts executable
         working-directory: /home/runner/work/build-tools/runtime
