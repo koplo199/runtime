@@ -13,6 +13,12 @@ jobs:
         with:
           path: runtime_source
 
+      - name: LS
+        run: |
+          ls -la .
+          ls -la /
+          ls -la $HOME
+
       - name: Fetching Build Tools
         uses: actions/checkout@v4
         with:
