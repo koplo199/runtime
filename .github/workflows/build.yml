@@ -9,7 +9,16 @@ jobs:
     container:
      image: debian:bookworm
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
+      - name: Install lsb_release
+        run: |
+          apt-get update
+          apt install lsb-release git
+
+      - name: run lsb_release
+        run: |
+          lsb_release -a
 
       - name: Fetching Build Tools
         working-directory: /home/runner/work/
