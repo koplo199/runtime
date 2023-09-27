@@ -11,15 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install lsb_release
-        run: |
-          apt-get update
-          apt -y install lsb-release git sudo
-
-      - name: run lsb_release
-        run: |
-          lsb_release -a
-
       - name: Fetching Build Tools
         working-directory: /home/runner/work/
         run: git clone https://github.com/koplo199/build-tools
