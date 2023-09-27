@@ -9,9 +9,7 @@ jobs:
     container:
      image: debian:bookworm
     steps:
-      - uses: actions/checkout@v4
-        with:
-          path: /home/runner/work/runtime
+      - uses: actions/checkout@v2
 
       - name: LS
         run: |
