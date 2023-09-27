@@ -11,6 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: LS
+        run: |
+          ls -la
+          ls -la /home
+          ls -la /home/runner
+          ls -la /home/runner/work
+          ls -la /home/runner/work/runtime
+
       - name: Install dependencies
         run: apt-get update -qq && apt -y install git sudo
 
