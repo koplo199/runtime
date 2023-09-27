@@ -14,7 +14,7 @@ jobs:
       - name: Install lsb_release
         run: |
           apt-get update
-          apt -y install lsb-release git
+          apt -y install lsb-release git sudo
 
       - name: run lsb_release
         run: |
