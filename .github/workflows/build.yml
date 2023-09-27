@@ -10,6 +10,8 @@ jobs:
      image: debian:bookworm
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: /home/runner/work/runtime
 
       - name: LS
         run: |
