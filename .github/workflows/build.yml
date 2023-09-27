@@ -6,8 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-#    container:
-#     image: debian:bookworm
+    container:
+     image: debian:bookworm
     steps:
       - uses: actions/checkout@v4
         with:
@@ -19,8 +19,8 @@ jobs:
           repository: koplo199/build-tools
           path: build-tools
 
-#      - name: Install container dependencies
-#        run: apt-get update -qq && apt -y install sudo
+      - name: Install container dependencies
+        run: apt-get update -qq && apt -y install sudo
 
       - name: Make build scripts executable
         working-directory: build-tools/runtime
