@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install git
+        run: apt -y install git
+
       - name: Fetching Build Tools
         working-directory: /home/runner/work/
         run: git clone https://github.com/koplo199/build-tools
