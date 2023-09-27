@@ -11,8 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install git
-        run: apt-get update -qq && apt -y install git
+      - name: Install dependencies
+        run: apt-get update -qq && apt -y install git sudo
 
       - name: Fetching Build Tools
         working-directory: /home/runner/work/
