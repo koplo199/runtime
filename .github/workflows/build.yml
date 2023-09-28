@@ -24,7 +24,7 @@ jobs:
         id: vars
         run: |
           version=$(cat VERSION)
-          echo "::set-output name=release_version::${version}"
+          echo "release_version=${version}" >> $GITHUB_OUTPUT
 
       - name: Install container dependencies
         run: apt-get update -qq && apt -y install sudo
