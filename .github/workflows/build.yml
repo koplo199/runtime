@@ -19,6 +19,13 @@ jobs:
           repository: koplo199/build-tools
           path: build-tools
 
+      - name: Get release version
+        working-directory: runtime_source
+        id: vars
+        run: |
+          version=$(cat VERSION)
+          echo "::set-output name=release_version::${version}"
+
       - name: Install container dependencies
         run: apt-get update -qq && apt -y install sudo
 
@@ -28,18 +35,11 @@ jobs:
       
       - name: Launch environment.sh
         working-directory: build-tools/runtime
-        run: ./environment.sh
+        run: ./environment.sh "${{ steps.vars.outputs.release_version }}" "Debian" "12"
       
       - name: Launch build.sh
         working-directory: build-tools/runtime
         run: ./build.sh
-
-      - name: Get release version
-        working-directory: runtime_source
-        id: vars
-        run: |
-          version=$(cat VERSION)
-          echo "::set-output name=release_version::${version}"
 
       - name: Rename runtime archive
         run: |
