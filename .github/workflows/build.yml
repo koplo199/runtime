@@ -29,6 +29,9 @@ jobs:
           repository: bottlesdevs/build-tools
           path: build-tools
 
+      - name: Install container dependencies
+        run: apt-get update -qq && apt -y install git sudo
+
       - name: Get release version
         working-directory: runtime_source
         id: vars
@@ -42,9 +45,6 @@ jobs:
           fi
           echo "release_version=${version}" >> $GITHUB_OUTPUT
           echo "new_version=${is_new_version}" >> $GITHUB_OUTPUT
-
-      - name: Install container dependencies
-        run: apt-get update -qq && apt -y install sudo
 
       - name: Make build scripts executable
         working-directory: build-tools/runtime
