@@ -18,6 +18,9 @@ jobs:
      image: debian:bookworm
 #     image: ${{ env.CONTAINER }}
     steps:
+      - name: Install container dependencies
+        run: apt-get update -qq && apt -y install git sudo
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -28,9 +31,6 @@ jobs:
         with:
           repository: bottlesdevs/build-tools
           path: build-tools
-
-      - name: Install container dependencies
-        run: apt-get update -qq && apt -y install git sudo
 
       - name: Get release version
         working-directory: runtime_source
