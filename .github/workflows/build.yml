@@ -3,11 +3,17 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+
+env:
+  CONTAINER: debian:bookworm
+  CONTAINER_NAME: Debian
+  CONTAINER_VERSION: 12
+
 jobs:
   build:
     runs-on: ubuntu-latest
-#    container:
-#     image: debian:bookworm
+    container:
+     image: env.CONTAINER
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,8 +40,8 @@ jobs:
           echo "release_version=${version}" >> $GITHUB_OUTPUT
           echo "new_version=${is_new_version}" >> $GITHUB_OUTPUT
 
-#      - name: Install container dependencies
-#        run: apt-get update -qq && apt -y install sudo
+      - name: Install container dependencies
+        run: apt-get update -qq && apt -y install sudo
 
       - name: Make build scripts executable
         working-directory: build-tools/runtime
@@ -43,7 +49,7 @@ jobs:
       
       - name: Launch environment.sh
         working-directory: build-tools/runtime
-        run: ./environment.sh "${{ steps.vars.outputs.release_version }}" "Debian" "12"
+        run: ./environment.sh "${{ steps.vars.outputs.release_version }}" ${{ env.CONTAINER_NAME }} ${{ env.CONTAINER_VERSION }}
       
       - name: Launch build.sh
         working-directory: build-tools/runtime
