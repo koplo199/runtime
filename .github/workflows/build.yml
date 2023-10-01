@@ -5,7 +5,9 @@ on:
   workflow_dispatch:
 
 env:
-  CONTAINER: debian:bookworm
+#  We cannot use env for containers...
+#  https://github.com/actions/runner/issues/2394
+#  CONTAINER: debian:bookworm
   CONTAINER_NAME: Debian
   CONTAINER_VERSION: 12
 
@@ -13,7 +15,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-     image: ${{ env.CONTAINER }}
+     image: debian:bookworm
+#     image: ${{ env.CONTAINER }}
     steps:
       - uses: actions/checkout@v4
         with:
